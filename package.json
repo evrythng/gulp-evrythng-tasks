@@ -1,7 +1,7 @@
 {
   "name": "gulp-evrythng-tasks",
   "version": "0.0.1",
-  "description": "Build and test framework using Gulp 4 tasks and configurations for the evrythng.js SDK.",
+  "description": "Common dev tasks framework using Gulp 4 for evrythng.js and plugins.",
   "main": "index.js",
   "scripts": {
     "lint": "standard",
