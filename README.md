@@ -34,7 +34,6 @@ If you need additional configuration use the `standard` configuration object in 
 
 ```json
 {
-  ...
   "standard": {
     "globals": ["fetch"]
   }
@@ -117,13 +116,13 @@ TODO
 If you need to update and test `gulp-evrythng-tasks` while you're working on evrythng.js libraries the best way is to link your
 local package in the evrythng.js library repo:
 
-**In $cwd/gulp-evrythng-tasks
+**In <$cwd>/gulp-evrythng-tasks**
 ```
 $ npm install
 $ npm link
 ```
 
-**In $cwd/evrythng-plugin
+**In <$cwd>/evrythng-plugin**
 ```
 $ npm link gulp-evrythng-tasks
 ```
