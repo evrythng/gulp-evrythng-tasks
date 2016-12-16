@@ -1,6 +1,6 @@
 {
   "name": "gulp-evrythng-tasks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Common dev tasks framework using Gulp 4 for evrythng.js and plugins.",
   "main": "index.js",
   "scripts": {

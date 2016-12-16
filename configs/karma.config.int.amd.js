@@ -5,7 +5,7 @@ const browserDeps = require('../browserDeps')
 const TESTS = 'test/integration/umd.spec.js'
 
 // Load compiled library (UMD).
-const LIB = options.browser || options.main
+const LIB = options.main
 
 // Load RequireJs configuration file.
 const ENTRY = 'test/require-main.js'
