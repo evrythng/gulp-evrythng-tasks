@@ -29,7 +29,7 @@ module.exports = function (config) {
       format: 'iife',
       sourceMap: 'inline'
     },
-    reporters: ['dots', 'junit', 'coverage'],
+    reporters: ['dots', 'junit', 'coverage', 'coveralls'],
     junitReporter: {
       outputDir: REPORT_DIR,
       outputFile: 'test-result.xml',
@@ -39,7 +39,7 @@ module.exports = function (config) {
       dir: REPORT_DIR,
       reporters: [
         { type: 'html', subdir: 'html-coverage' },
-        { type: 'cobertura', subdir: '.' }
+        { type: 'lcovonly', subdir: '.' }
       ]
     },
     browsers: ['Chrome'],
