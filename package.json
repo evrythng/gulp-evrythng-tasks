@@ -1,6 +1,6 @@
 {
   "name": "gulp-evrythng-tasks",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Common dev tasks framework using Gulp 4 for evrythng.js and plugins.",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
     "karma-jasmine": "^1.1.0",
     "karma-junit-reporter": "^1.2.0",
     "karma-requirejs": "^1.1.0",
@@ -41,7 +42,6 @@
     "uglify-js": "mishoo/UglifyJS2#harmony"
   },
   "devDependencies": {
-    "karma-coveralls": "^1.1.2",
     "standard": "^8.6.0"
   }
 }
