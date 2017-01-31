@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 npm test
 npm run build
