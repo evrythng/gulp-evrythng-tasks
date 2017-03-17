@@ -24,6 +24,7 @@ module.exports = gulp => {
   ]))
 
   gulp.task('test:unit', () => test(config('karma.config.unit')))
+  gulp.task('test:unit-dev', () => test(config('karma.config.unit-dev')))
 
   gulp.task('test:int:globals', () => test(config('karma.config.int.globals')))
   gulp.task('test:int:amd', () => test(config('karma.config.int.amd')))

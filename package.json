@@ -1,6 +1,6 @@
 {
   "name": "gulp-evrythng-tasks",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Common dev tasks framework using Gulp 4 for evrythng.js and plugins.",
   "main": "index.js",
   "scripts": {
@@ -29,9 +29,9 @@
     "karma-coverage": "^1.1.1",
     "karma-coveralls": "^1.1.2",
     "karma-jasmine": "^1.1.0",
-    "karma-junit-reporter": "^1.2.0",
     "karma-requirejs": "^1.1.0",
     "karma-rollup-plugin": "^0.2.4",
+    "karma-sourcemap-loader": "^0.3.7",
     "requirejs": "^2.3.2",
     "rollup": "^0.37.0",
     "rollup-plugin-babel": "^2.7.1",

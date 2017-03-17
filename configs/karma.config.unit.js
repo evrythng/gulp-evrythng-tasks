@@ -29,12 +29,7 @@ module.exports = function (config) {
       format: 'iife',
       sourceMap: 'inline'
     },
-    reporters: ['dots', 'junit', 'coverage', 'coveralls'],
-    junitReporter: {
-      outputDir: REPORT_DIR,
-      outputFile: 'test-result.xml',
-      useBrowserName: false
-    },
+    reporters: ['dots', 'coverage', 'coveralls'],
     coverageReporter: {
       dir: REPORT_DIR,
       reporters: [
