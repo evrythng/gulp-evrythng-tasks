@@ -3,13 +3,12 @@ const cjs = require('rollup-plugin-commonjs')
 
 // Load Unit tests and compile through Rollup, which will require src files.
 const TESTS = 'test/unit/**/*.spec.js'
-const SRC = 'src/**/*.js'
 
 module.exports = function (config) {
   config.set({
     basePath: process.cwd(),
     frameworks: ['jasmine'],
-    files: [TESTS, { pattern: SRC, included: false }],
+    files: [TESTS],
     preprocessors: {
       [TESTS]: ['rollup', 'sourcemap']
     },
