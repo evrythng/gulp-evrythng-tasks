@@ -1,10 +1,15 @@
 /**
- * For each base config we'll also add a minified version:
+ * For each base config we'll also add a bundle with any polyfill
+ * dependency and a minified version for all targets:
  *
  * - ES6 + ES Modules
  * - ES6 + ES Modules (minified)
+ * - ES6 + ES Modules + Polyfills
+ * - ES6 + ES Modules + Polyfills (minified)
  * - ES5 + UMD
  * - ES5 + UMD (minified)
+ * - ES5 + UMD + Polyfills
+ * - ES5 + UMD + Polyfills (minified)
  */
 
 const rollup = require('rollup')
@@ -22,7 +27,7 @@ const banner = `/**
  * (c) 2012-${currentYear} EVRYTHNG Ltd. London / New York / San Francisco.
  * Released under the Apache Software License, Version 2.0.
  * For all details and usage:
- * https://github.com/${options.name}/${options.name}.js
+ * https://github.com/evrythng/evrythng-pubsub.js
  */
 `
 
@@ -48,12 +53,35 @@ function build (files) {
 }
 
 /**
- * Add minified versions to base targets.
+ * Add polyfill and minified versions to base targets.
  * @param targets {Object[]} Base target configurations
  */
 function getTargetConfigs (targets) {
-  const uglifys = targets.map(getUglifyConfig)
-  return targets.concat(uglifys)
+  const baseTargets = options.polyfill
+    ? targets.concat(targets.map(getPolyfillConfig))
+    : targets
+  const uglifys = baseTargets.map(getUglifyConfig)
+  return baseTargets.concat(uglifys)
+}
+
+/**
+ * Add polyfill version to given target. UMD needs the
+ * global name of the Fetch api.
+ * @param target {Object} Previous target
+ * @returns {Object}
+ */
+function getPolyfillConfig (target) {
+  let polyfill = Object.assign({}, target, {
+    entry: addExtension(target.entry, 'polyfill'),
+    dest: addExtension(target.dest, 'polyfill'),
+    external: options.polyfill.external
+  })
+
+  if (target.format === 'umd') {
+    polyfill.globals = options.polyfill.globals
+  }
+
+  return polyfill
 }
 
 /**

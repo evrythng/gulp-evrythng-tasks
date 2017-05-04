@@ -8,6 +8,7 @@ const options = require('../options')
 module.exports = {
   entry: `src/${options.name}.js`,
   dest: `dist/${options.name}.es6.js`,
+  format: 'es',
   plugins: [
     node({ jsnext: true })
   ],
