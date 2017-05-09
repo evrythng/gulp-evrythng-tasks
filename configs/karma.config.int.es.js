@@ -3,7 +3,7 @@ const cjs = require('rollup-plugin-commonjs')
 const options = require('../options')
 
 // Load ES6 integration test file, which will require the src files.
-const TESTS = 'test/integration/es6.spec.js'
+const TESTS = 'test/integration/es.spec.js'
 
 module.exports = function (config) {
   config.set({

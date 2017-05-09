@@ -3,18 +3,12 @@
  * dependency and a minified version for all targets:
  *
  * - ES6 + ES Modules
- * - ES6 + ES Modules (minified)
  * - ES6 + ES Modules + Polyfills
- * - ES6 + ES Modules + Polyfills (minified)
  * - ES5 + UMD
- * - ES5 + UMD (minified)
  * - ES5 + UMD + Polyfills
- * - ES5 + UMD + Polyfills (minified)
  */
 
 const rollup = require('rollup')
-const uglify = require('rollup-plugin-uglify')
-const { minify } = require('uglify-js')
 const options = require('../options')
 
 /**
@@ -27,7 +21,7 @@ const banner = `/**
  * (c) 2012-${currentYear} EVRYTHNG Ltd. London / New York / San Francisco.
  * Released under the Apache Software License, Version 2.0.
  * For all details and usage:
- * https://github.com/evrythng/evrythng-pubsub.js
+ * https://github.com/evrythng/${options.name}.js
  */
 `
 
@@ -57,11 +51,9 @@ function build (files) {
  * @param targets {Object[]} Base target configurations
  */
 function getTargetConfigs (targets) {
-  const baseTargets = options.polyfill
+  return options.polyfill
     ? targets.concat(targets.map(getPolyfillConfig))
     : targets
-  const uglifys = baseTargets.map(getUglifyConfig)
-  return baseTargets.concat(uglifys)
 }
 
 /**
@@ -82,20 +74,6 @@ function getPolyfillConfig (target) {
   }
 
   return polyfill
-}
-
-/**
- * Add uglified version to previous targets. We're using Uglify Harmony
- * as the stable does not yet understand ES Modules. See:
- * https://github.com/TrySound/rollup-plugin-uglify#warning
- * @param target {Object} Previous target
- * @returns {Object[]}
- */
-function getUglifyConfig (target) {
-  return Object.assign({}, target, {
-    dest: addExtension(target.dest, 'min'),
-    plugins: target.plugins.concat(uglify({}, minify))
-  })
 }
 
 /**

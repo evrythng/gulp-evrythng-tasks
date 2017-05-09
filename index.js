@@ -19,7 +19,7 @@ module.exports = gulp => {
   })
 
   gulp.task('build', () => build([
-    config('rollup.config.es6'),
+    config('rollup.config.es'),
     config('rollup.config.umd')
   ]))
 
@@ -30,7 +30,7 @@ module.exports = gulp => {
   gulp.task('test:int:amd', () => test(config('karma.config.int.amd')))
   gulp.task('test:int:cjs', () => test(config('karma.config.int.cjs')))
   gulp.task('test:int:node', () => test(config('jasmine.config.int.node')))
-  gulp.task('test:int:es6', () => test(config('karma.config.int.es6')))
+  gulp.task('test:int:es6', () => test(config('karma.config.int.es')))
   gulp.task('test:integration', gulp.series([
     'build',
     'test:int:globals',
