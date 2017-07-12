@@ -1,6 +1,3 @@
-const node = require('rollup-plugin-node-resolve')
-const options = require('../options')
-
 // Load ES6 integration test file, which will require the src files.
 const TESTS = 'test/integration/es.spec.js'
 
