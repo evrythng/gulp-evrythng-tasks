@@ -1,5 +1,6 @@
 const babel = require('rollup-plugin-babel')
 const node = require('rollup-plugin-node-resolve')
+const cjs = require('rollup-plugin-commonjs')
 const options = require('../options')
 
 /**
@@ -11,12 +12,17 @@ module.exports = {
   dest: `dist/${options.name}.js`,
   format: 'umd',
   plugins: [
+    node(),
+    cjs(),
     babel({
       exclude: 'node_modules/**',
-      presets: [['es2015', { 'modules': false }]],
-      plugins: ['external-helpers']
-    }),
-    node()
+      presets: ['es2017', ['es2015', {modules: false}]],
+      plugins: [
+        'external-helpers',
+        'transform-async-generator-functions',
+        ['transform-runtime', {helpers: false, polyfill: false}]
+      ]
+    })
   ],
   moduleName: options.moduleName,
   external: options.external,

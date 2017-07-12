@@ -1,3 +1,4 @@
+const babel = require('rollup-plugin-babel')
 const node = require('rollup-plugin-node-resolve')
 const options = require('../options')
 
@@ -9,6 +10,15 @@ module.exports = {
   entry: `src/${options.name}.js`,
   dest: `dist/${options.name}.es.js`,
   format: 'es',
-  plugins: [ node() ],
+  plugins: [
+    node(),
+    babel({
+      exclude: 'node_modules/**',
+      plugins: [
+        'external-helpers',
+        'transform-async-generator-functions'
+      ]
+    })
+  ],
   external: options.external
 }

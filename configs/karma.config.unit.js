@@ -1,13 +1,13 @@
 const path = require('path')
 const node = require('rollup-plugin-node-resolve')
-const istanbul = require('rollup-plugin-istanbul')
 const cjs = require('rollup-plugin-commonjs')
+const babel = require('rollup-plugin-babel')
 
 // Load Unit tests and compile through Rollup, which will require src files.
 const TESTS = 'test/unit/**/*.spec.js'
 
 // Don't include test files and node_modules in coverage report.
-const EXTERNAL = ['test/**/*', 'node_modules/**/*']
+const IGNORE_COVERAGE = ['test/**/*']
 
 const REPORT_DIR = path.resolve('report')
 
@@ -21,9 +21,16 @@ module.exports = function (config) {
     },
     rollupPreprocessor: {
       plugins: [
-        istanbul({ exclude: EXTERNAL }),
         node({ jsnext: true, browser: true }),
-        cjs()
+        cjs(),
+        babel({
+          exclude: 'node_modules/**',
+          plugins: [
+            ['istanbul', {'exclude': IGNORE_COVERAGE}],
+            'external-helpers',
+            'transform-async-generator-functions'
+          ]
+        })
       ],
       context: 'window',
       format: 'iife',
