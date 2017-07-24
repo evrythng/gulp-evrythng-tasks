@@ -48,7 +48,7 @@ $ gulp build
 
 This builds two versions of your library (including the minified versions):
 
-* using ES6 modules: for future use, or to use with next generation bundlers like Webpack 2 and Rollup;
+* using ES6 modules: for future use, or to use with next generation bundlers like Webpack 2+ and Rollup;
 * using the UMD pattern: to use across environments and different loaders (globals, AMD, Commonjs)
 
 All libraries should be isomorphic (do not rely on browser and/or Node.js platforms).
@@ -89,8 +89,8 @@ $ gulp test:int:es6
 
 This tests all the above scenarios using Karma and Jasmine.
 
-Unit tests are loaded via Rollup, so they can use ES6 modules. It also adds `istanbul` (HTML, XML) and `junit` (XML) reports
-to the `report` folder in your project, to be used in Jenkins.
+Unit tests are loaded via Rollup, so they can use ES6 modules. It also adds `istanbul` and `coveralls` reports
+to the `report` folder in your project, to be used in Travis CI.
 
 Integration tests test the loading of the compiled library in UMD and ES6 modules environments. UMD integration tests should also
 be UMD compatible (i.e. have the UMD wrapper). See [evrythng.js example](https://github.com/evrythng/evrythng.js).
@@ -105,9 +105,6 @@ See [evrythng.js example](https://github.com/evrythng/evrythng.js).
 
 TODO
 
-- [ ] Add NPM publish tasks
-- [ ] Add Bower/Github publish tasks
-- [ ] Add CDN publish tasks
 - [ ] Automate release notes (?)
 - [ ] Document release process
 

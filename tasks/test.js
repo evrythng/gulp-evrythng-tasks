@@ -29,10 +29,13 @@ function test (config) {
  * @returns {Promise}
  */
 function karmaTest (config) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
+    const onComplete = statusCode => {
+      statusCode > 0 ? reject(new Error('Karma tests failed')) : resolve()
+    }
     const karma = new Karma({
       configFile: path.resolve(config)
-    }, resolve)
+    }, onComplete)
     karma.start()
   })
 }
@@ -43,10 +46,14 @@ function karmaTest (config) {
  * @returns {Promise}
  */
 function jasmineTest (config) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
+    const onComplete = passed => {
+      if (!passed) reject(new Error('Jasmine tests failed'))
+      resolve()
+    }
     const jasmine = new Jasmine()
     jasmine.loadConfigFile(config)
-    jasmine.onComplete(resolve)
+    jasmine.onComplete(onComplete)
     jasmine.execute()
   })
 }
