@@ -1,6 +1,6 @@
 {
   "name": "gulp-evrythng-tasks",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Common dev tasks framework using Gulp 4 for evrythng.js and plugins.",
   "main": "index.js",
   "scripts": {
@@ -42,7 +42,7 @@
     "requirejs": "^2.3.2",
     "rollup": "^0.43.1",
     "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-resolve": "^2.0.0"
   },
   "devDependencies": {
