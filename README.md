@@ -67,13 +67,6 @@ module.exports = {
 }
 ```
 
-**Additional builds**
-
-TODO
-
-- [ ] Update configuration for generic builds (not just polyfill)
-- [ ] Document configuration file
-
 ### Testing (Karma + Jasmine)
 
 ```
@@ -84,7 +77,7 @@ $ gulp test:int:globals
 $ gulp test:int:amd
 $ gulp test:int:cjs
 $ gulp test:int:node
-$ gulp test:int:es6
+$ gulp test:int:es
 ```
 
 This tests all the above scenarios using Karma and Jasmine.
@@ -103,10 +96,53 @@ See [evrythng.js example](https://github.com/evrythng/evrythng.js).
 
 ### Publishing
 
-TODO
+1. Add the correct Travis deploy configuration:
 
-- [ ] Automate release notes (?)
-- [ ] Document release process
+```
+deploy:
+  # CDN Latest
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_EVTJS_BUCKET
+    local_dir: dist
+    upload-dir: js/<PACKAGE_NAME>/latest
+    skip_cleanup: true
+    on:
+      tags: true
+  # CDN Versioned
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $AWS_EVTJS_BUCKET
+    local_dir: dist
+    upload-dir: js/<PACKAGE_NAME>/$TRAVIS_TAG
+    skip_cleanup: true
+    on:
+      tags: true
+  # NPM
+  - provider: npm
+    email: $NPM_EMAIL
+    api_key: $NPM_TOKEN
+    skip_cleanup: true
+    tag: next
+    on:
+      tags: true
+```
+
+2. Add `deploy` NPM script to `package.json`:
+
+```
+"deploy": "sh ./node_modules/gulp-evrythng-tasks/bin/deploy.sh"
+```
+
+3. Run deploy script with target version:
+
+```
+npm run deploy 1.0.0-pre.1
+```
+
+4. Travis will do the rest!
 
 ## Developing
 

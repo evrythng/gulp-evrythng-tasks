@@ -30,14 +30,14 @@ module.exports = gulp => {
   gulp.task('test:int:amd', () => test(config('karma.config.int.amd')))
   gulp.task('test:int:cjs', () => test(config('karma.config.int.cjs')))
   gulp.task('test:int:node', () => test(config('jasmine.config.int.node')))
-  gulp.task('test:int:es6', () => test(config('karma.config.int.es')))
+  gulp.task('test:int:es', () => test(config('karma.config.int.es')))
   gulp.task('test:integration', gulp.series([
     'build',
     'test:int:globals',
     'test:int:amd',
     'test:int:cjs',
     'test:int:node',
-    'test:int:es6'
+    'test:int:es'
   ]))
 
   gulp.task('test', gulp.series([
