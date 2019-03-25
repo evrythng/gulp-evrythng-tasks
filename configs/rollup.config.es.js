@@ -7,9 +7,11 @@ const options = require('../options')
  */
 
 module.exports = {
-  entry: `src/${options.name}.js`,
-  dest: `dist/${options.name}.es.js`,
-  format: 'es',
+  input: `src/${options.name}.js`,
+  output: {
+    file: `dist/${options.name}.es.js`,
+    format: 'es',
+  },
   plugins: [
     node(),
     babel({

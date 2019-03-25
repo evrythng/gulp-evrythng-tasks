@@ -8,9 +8,13 @@ const options = require('../options')
  */
 
 module.exports = {
-  entry: `src/${options.name}.js`,
-  dest: `dist/${options.name}.js`,
-  format: 'umd',
+  input: `src/${options.name}.js`,
+  output: {
+    file: `dist/${options.name}.js`,
+    format: 'umd',
+    name: options.name,
+    globals: options.globals
+  },
   plugins: [
     node(),
     cjs(),
@@ -24,7 +28,5 @@ module.exports = {
       ]
     })
   ],
-  moduleName: options.moduleName,
   external: options.external,
-  globals: options.globals
 }

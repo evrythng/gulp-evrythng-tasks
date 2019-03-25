@@ -37,10 +37,12 @@ function build (files) {
       return bundle.write({
         banner,
         sourceMap: true,
-        format: config.format,
-        dest: config.dest,
-        moduleName: config.moduleName,
-        globals: config.globals
+        output: {
+          file: config.file,
+          format: config.format,
+          name: config.name,
+          globals: config.globals
+        },
       })
     })
   }))
@@ -64,8 +66,11 @@ function getTargetConfigs (targets) {
  */
 function getPolyfillConfig (target) {
   let polyfill = Object.assign({}, target, {
-    entry: addExtension(target.entry, 'polyfill'),
-    dest: addExtension(target.dest, 'polyfill'),
+    input: addExtension(target.input, 'polyfill'),
+    output: {
+      file: addExtension(target.output.file, 'polyfill'),
+      format: target.output.format
+    },
     external: options.polyfill.external
   })
 
